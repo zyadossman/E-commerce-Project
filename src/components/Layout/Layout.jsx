@@ -15,7 +15,7 @@ export default function Layout() {
 
   <Navbar/>
 
-<div className="container min-h-dvh mx-auto max-w-6xl pt-12">
+<div className="container min-h-dvh mx-auto max-w-6xl mt-15 mb-8">
   <Outlet/>
 </div>
 
