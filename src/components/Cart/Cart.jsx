@@ -37,8 +37,8 @@ export default function Cart() {
   <h1 className="text-center text-[#191919] dark:text-white text-[32px] font-semibold leading-[38px]">
     My Shopping Cart
   </h1>
-  <div className="flex items-start mt-8 gap-6">
-    <div className="bg-white p-4 w-[800px] rounded-xl">
+  <div className="flex flex-wrap justify-around mt-8 gap-6">
+    <div className="w-full lg:w-2/4 bg-white rounded-xl">
       <table className="w-full bg-white rounded-xl">
         <thead>
           <tr className="text-center border-b border-gray-400 w-full text-[#7f7f7f] text-sm font-medium uppercase leading-[14px] tracking-wide">
@@ -75,7 +75,7 @@ export default function Cart() {
 
       </table>
     </div>
-    <div className="w-[424px] bg-white rounded-lg p-6">
+    <div className="w-full lg:w-1/4 bg-white rounded-lg mt-2">
       <h2 className="text-[#191919] mb-2 text-xl font-medium leading-[30px]">
         Cart Total
       </h2>
