@@ -1,13 +1,17 @@
-import React, { useContext } from 'react'
-import so from '../assets/images/freshcart-logo.svg'
+import React, { useContext, useState } from 'react'
+import logo from '../assets/images/freshcart-logo.svg'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { UserContext } from '../Context/UserContext'
 import { CounterContext } from '../Context/CounterContext'
 import { CartContext } from '../Context/CartContext'
+import { Menu, X } from 'lucide-react'
+
 
 export default function Navbar() {
+    
    let {numOfCartItems}= useContext(CartContext)
    let {userLogin , setuserLogin} =useContext(UserContext)
+    const [menuOpen, setMenuOpen] = useState(false);
    let {counter} = useContext(CounterContext)
     let navigate = useNavigate()
    function logout(){
@@ -16,35 +20,100 @@ export default function Navbar() {
     navigate('/login')
    }
   return <>
-  <nav className='bg-slate-200 p-2 static lg:fixed top-0 start-0 end-0 z-50'>
-    <div className="container max-w-7xl m-auto flex flex-col md:flex-row justify-between">
-        <div className='flex flex-col md:flex-row items-center'>
-            <img width={100} src={so} alt="Logo" />
-            <ul className='flex flex-col md:flex-row items-center'>
-                {userLogin != null ? <><li className='text-md mx-2 text-shadow-amber-600 py-2'><NavLink to='/'> Home</NavLink></li>
-                <li className='text-md mx-2 text-shadow-amber-600 py-2'><NavLink to='/products'>Products</NavLink></li>
-                <li className='text-md mx-2 text-shadow-amber-600 py-2'><NavLink to='categories'>Categories</NavLink></li>
-                <li className='text-md mx-2 text-shadow-amber-600 py-2'><NavLink to='/brands'>Brands</NavLink></li>
-                <li className='text-md mx-2 text-shadow-amber-600 py-2 relative'><NavLink to='/cart'>Cart<span className=" shrink-0 rounded-full bg-emerald-500 px-2 font-mono text-sm font-small tracking-tight absolute -top-1 -end-4 text-white">{numOfCartItems}</span>
-</NavLink></li></> : null}
-                
-            </ul>
-        </div>
-        <div className='flex flex-col md:flex-row items-center'>
-            <ul className='flex flex-col md:flex-row items-center'>
-                {userLogin === null ? <><li className='text-md mx-2 text-shadow-amber-600 py-2'><NavLink to="/register">Register</NavLink></li>
-                <li className='text-md mx-2 text-shadow-amber-600 py-2'><NavLink to="/login">Login</NavLink></li></>  : <><li onClick={logout} className='text-md mx-2 text-shadow-amber-600 py-2'><NavLink className='cursor-pointer'>Logout</NavLink></li></>  }
-                
-                
-                <li className='text-md mx-2 text-shadow-amber-600 py-2'>
-                <i className="fa-brands mx-2 fa-facebook-f"></i>
-                <i className="fa-brands mx-2 fa-youtube"></i>
-                <i className="fa-brands mx-2 fa-twitter"></i>
-                <i className="fa-brands mx-2 fa-tiktok"></i>
-                </li>
-            </ul>
-        </div>
+<nav className="bg-gray-100 shadow-md fixed top-0 left-0 right-0 z-50">
+  <div className="container mx-auto flex items-center justify-between px-4 py-3">
+    <div className="flex items-center gap-2 w-1/3">
+      <img src={logo} className="w-24" alt="Logo" />
     </div>
-  </nav>
+    <ul className="hidden md:flex justify-center items-center gap-6 w-1/3 text-gray-800">
+      {userLogin && (
+        <>
+          <li><NavLink to="/" className="hover:text-gray-900">Home</NavLink></li>
+          <li><NavLink to="/products" className="hover:text-gray-900">Products</NavLink></li>
+          <li><NavLink to="/categories" className="hover:text-gray-900">Categories</NavLink></li>
+          <li><NavLink to="/brands" className="hover:text-gray-900">Brands</NavLink></li>
+          <li className="relative">
+            <NavLink className="relative hover:text-gray-900" to="/cart">
+              Cart
+              <span className="absolute -top-2 -right-3 bg-green-500 text-white text-xs px-1 rounded-full">
+                {numOfCartItems}
+              </span>
+            </NavLink>
+          </li>
+        </>
+      )}
+      {userLogin === null && (
+        <>
+          <li><NavLink to="/register" className="hover:text-gray-900">Register</NavLink></li>
+          <li><NavLink to="/login" className="hover:text-gray-900">Login</NavLink></li>
+        </>
+      )}
+    </ul>
+    <div className="hidden md:flex justify-end items-center gap-4 w-1/3 text-gray-600">
+      <i className="fa-brands fa-facebook-f hover:text-gray-900"></i>
+      <i className="fa-brands fa-twitter hover:text-gray-900"></i>
+      <i className="fa-brands fa-youtube hover:text-gray-900"></i>
+      <i className="fa-brands fa-tiktok hover:text-gray-900"></i>
+
+      {userLogin && (
+        <button
+          onClick={logout}
+          className="cursor-pointer text-red-600 hover:text-red-800 font-medium ml-2"
+        >
+          Logout
+        </button>
+      )}
+    </div>
+    <button
+      className="md:hidden text-gray-800"
+      onClick={() => setMenuOpen(!menuOpen)}
+    >
+      <i className={`fas ${menuOpen ? "fa-times" : "fa-bars"} text-2xl`}></i>
+    </button>
+  </div>
+
+ 
+  <ul
+    className={`${
+      menuOpen ? "block" : "hidden"
+    } md:hidden flex flex-col bg-gray-200 shadow-md p-4 text-center text-gray-800`}
+  >
+    {userLogin && (
+      <>
+        <li className="py-2"><NavLink to="/">Home</NavLink></li>
+        <li className="py-2"><NavLink to="/products">Products</NavLink></li>
+        <li className="py-2"><NavLink to="/categories">Categories</NavLink></li>
+        <li className="py-2"><NavLink to="/brands">Brands</NavLink></li>
+        <li className="py-2 relative">
+          <NavLink className="relative" to="/cart">
+            Cart
+            <span className="absolute -top-2 -right-3 bg-green-500 text-white text-xs px-1 rounded-full">
+              {numOfCartItems}
+            </span>
+          </NavLink>
+        </li>
+        <li className="py-2">
+          <button onClick={logout} className="text-red-600 hover:text-red-800 font-medium">
+            Logout
+          </button>
+        </li>
+      </>
+    )}
+    {userLogin === null && (
+      <>
+        <li className="py-2"><NavLink to="/register">Register</NavLink></li>
+        <li className="py-2"><NavLink to="/login">Login</NavLink></li>
+      </>
+    )}
+    <li className="flex justify-center gap-4 mt-2">
+      <i className="fa-brands fa-facebook-f hover:text-gray-900"></i>
+      <i className="fa-brands fa-twitter hover:text-gray-900"></i>
+      <i className="fa-brands fa-youtube hover:text-gray-900"></i>
+      <i className="fa-brands fa-tiktok hover:text-gray-900"></i>
+    </li>
+  </ul>
+</nav>
+
+
   </>
 }

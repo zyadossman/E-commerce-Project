@@ -6,40 +6,37 @@ import Slider from "react-slick";
 
 export default function CategoriesSlider() {
 
-var settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 8,
-    slidesToScroll: 2,
-    arrows:false,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false
-        }
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  autoplay: true,
+autoplaySpeed: 2000,
+pauseOnHover: true,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 4,
       },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2
-        }
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
       },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
+};
+
 
 
 
@@ -61,23 +58,27 @@ getAllCategories()
     } , [])
 
   return <>
-    <div className='my-3'>
-    <h2 className='text-xl font-semibold my-2'>
-      Shop Popular Categories
-    </h2>
-<Slider {...settings}>
-{categoriesSlider?.map((category)=>{ return <div className='my-4'>
+<div className='mt-24 mb-6 px-4'>
+  <h2 className='text-xl font-semibold mb-4 text-center'>
+    Shop Popular Categories
+  </h2>
 
-<img className='h-[175px]' src={category?.image} alt={category?.name} />
-  <h4 className='text-center'>{category?.name}</h4>
+  <Slider {...settings}>
+    {categoriesSlider?.map((category, index) => (
+      <div key={index} className='px-2'>
+        <div className='bg-white rounded-lg shadow-sm p-2 flex flex-col items-center'>
+          <img
+            src={category?.image}
+            alt={category?.name}
+            className='w-full h-44 object-contain rounded-md'
+          />
+          <h4 className='text-center mt-2 text-sm font-medium'>{category?.name}</h4>
+        </div>
+      </div>
+    ))}
+  </Slider>
 </div>
-  
-   })}
 
-</Slider>
-
-
-    </div>
   
   
   

@@ -22,22 +22,21 @@ var settings = {
     } , [])
 
   return <>
-  <div className='flex flex-wrap my-5'>
-    <div className='w-3/4'>
+<div className="flex flex-col md:flex-row mt-24 gap-1 px-4">
+  <div className="w-full md:w-3/4 mb-7 md:mb-0">
     <Slider {...settings}>
-    <img className='h-[440px]'  src={img1} alt="" />
-    <img className='h-[440px]'  src={img2} alt="" />
-    <img className='h-[440px]'  src={img3} alt="" />
-
+      <img className="w-full h-[300px] md:h-[445px] object-cover rounded-md" src={img1} alt="slide 1" />
+      <img className="w-full h-[300px] md:h-[445px] object-cover rounded-md" src={img2} alt="slide 2" />
+      <img className="w-full h-[300px] md:h-[445px] object-cover rounded-md" src={img3} alt="slide 3" />
     </Slider>
-
-    </div>
-    <div className='w-1/4'>
-    <img className='w-full h-[220px]' src={img1} alt="" />
-    <img className='w-full h-[220px]' src={img2} alt="" />
-    </div>
-
   </div>
+
+  <div className="w-full md:w-1/4 flex flex-col gap-1">
+    <img className="w-full h-[150px] md:h-[220px] object-cover rounded-md" src={img1} alt="side 1" />
+    <img className="w-full h-[150px] md:h-[220px] object-cover rounded-md" src={img2} alt="side 2" />
+  </div>
+</div>
+
   
   </>
 }
