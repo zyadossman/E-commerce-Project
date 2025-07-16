@@ -33,11 +33,11 @@ export default function Cart() {
     } , [])
 
   return <>
-  {products? <section className="w-full bg-white dark:bg-[#0A2025] py-9 px-8">
-  <h1 className="text-center text-[#191919] dark:text-white text-[32px] font-semibold leading-[38px]">
+  {products? <section className="w-full bg-white py-9 px-8">
+  <h1 className="text-center text-[#191919] text-[32px] font-semibold leading-[38px]">
     My Shopping Cart
   </h1>
-  <div className="flex flex-wrap justify-around mt-8 gap-6">
+  <div className="flex flex-wrap justify-center lg:justify-around mt-8 gap-6">
     <div className="w-full lg:w-2/4 bg-white rounded-xl">
       <table className="w-full bg-white rounded-xl">
         <thead>
@@ -79,17 +79,17 @@ export default function Cart() {
       <h2 className="text-[#191919] mb-2 text-xl font-medium leading-[30px]">
         Cart Total
       </h2>
-      <div className="w-[376px] py-3 justify-between items-center flex">
+      <div className="w-full py-3 justify-between items-center flex">
         <span className="text-[#4c4c4c] text-base font-normal leading-normal">Total:</span><span className="text-[#191919] text-base font-semibold leading-tight">{totalPrice} EGP</span>
       </div>
-      <div className="w-[376px] py-3 shadow-[0px_1px_0px_0px_rgba(229,229,229,1.00)] justify-between items-center flex">
+      <div className="w-full py-3 shadow-[0px_1px_0px_0px_rgba(229,229,229,1.00)] justify-between items-center flex">
         <span className="text-[#4c4c4c] text-sm font-normal leading-[21px]">Shipping:</span><span className="text-[#191919] text-sm font-medium leading-[21px]">Free</span>
       </div>
-      <div className="w-[376px] py-3 shadow-[0px_1px_0px_0px_rgba(229,229,229,1.00)] justify-between items-center flex">
+      <div className="w-full py-3 shadow-[0px_1px_0px_0px_rgba(229,229,229,1.00)] justify-between items-center flex">
         <span className="text-[#4c4c4c] text-sm font-normal leading-[21px]">Subtotal:</span><span className="text-[#191919] text-sm font-medium leading-[21px]">{totalPrice} EGP</span>
       </div>
       <Link to='/checkout'>
-      <button className=" w-[376px] cursor-pointer text-white mt-5 px-10 py-4 bg-[#00b206] rounded-[44px] gap-4 text-base font-semibold leading-tight">
+      <button className=" w-full cursor-pointer text-white mt-5 px-10 py-4 bg-[#00b206] rounded-[44px] gap-4 text-base font-semibold leading-tight">
         Proceed to checkout
       </button>
       

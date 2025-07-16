@@ -24,21 +24,33 @@ export default function Categories() {
 
   return <>
 
-   {allCategories?.length > 0 ?  <div className='flex flex-wrap justify-evenly gap-y-4 my-4'>
-
- 
-  {allCategories?.map((category)=>{ return  <div className="w-full md:w-1/4 lg:w-1/4 xl:w-1/5 bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
-  <img src={category.image} alt={category.slug} className="w-[200px] h-[200px] object-cover" />
-  <div className="p-6">
-    <h2 className="text-xl font-semibold">{category.name}</h2>
-    <p className="text-gray-600 dark:text-gray-400">{category.slug}</p>
-
+   {allCategories?.length > 0 ? (
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 my-6 px-4">
+    {allCategories.map((category) => (
+      <div
+        key={category._id || category.slug}
+        className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden"
+      >
+        <img
+          src={category.image}
+          alt={category.slug}
+          className="w-full h-48 object-cover"
+        />
+        <div className="p-4">
+          <h2 className="text-lg text-center font-semibold text-gray-800 dark:text-gray-100">
+            {category.name}
+          </h2>
+          <p className="text-sm text-center text-gray-600 dark:text-gray-400">
+            {category.slug}
+          </p>
+        </div>
+      </div>
+    ))}
   </div>
-</div>
+) : (
+  <Spinner />
+)}
 
-})}
-
- </div> : <Spinner/>  }
   
   </>
 }
