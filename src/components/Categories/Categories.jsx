@@ -29,7 +29,7 @@ export default function Categories() {
     {allCategories.map((category) => (
       <div
         key={category._id || category.slug}
-        className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden"
+        className="bg-white shadow-lg rounded-lg overflow-hidden"
       >
         <img
           src={category.image}
@@ -37,10 +37,10 @@ export default function Categories() {
           className="w-full h-48 object-cover"
         />
         <div className="p-4">
-          <h2 className="text-lg text-center font-semibold text-gray-800 dark:text-gray-100">
+          <h2 className="text-lg text-center font-semibold text-gray-800">
             {category.name}
           </h2>
-          <p className="text-sm text-center text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-center text-gray-600">
             {category.slug}
           </p>
         </div>
